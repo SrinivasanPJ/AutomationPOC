@@ -1,0 +1,536 @@
+2025-03-10 11:53:24 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 11:53:24 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 11:53:24
+2025-03-10 11:53:26 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 11:53:26 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 11:53:26 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 11:53:26 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 11:53:30 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 11:53:30 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 11:53:35 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 11:53:39 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 11:53:40 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 11:53:40 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 11:53:40 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 11:53:41 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 11:53:42 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 11:53:42 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 11:53:43 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 11:53:45 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 11:53:46 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 11:53:46 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 11:53:51 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: Washington
+2025-03-10 11:53:52 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 11:53:52 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 11:53:54 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 11:53:54 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 11:53:54 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 11:54:00 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/onepagecheckout
+2025-03-10 11:54:03 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 11:54:03 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 11:54:03 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 11:54:03
+2025-03-10 11:54:03 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 38 sec
+2025-03-10 13:07:11 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:07:11 [main] INFO  com.AutoPOC.BaseTest - 🚀 Test Execution Started at: 2025-03-10 13:07:11
+2025-03-10 13:07:12 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:07:12 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:07:12 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 13:07:12 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 13:07:56 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 13:07:56 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 13:07:56 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:07:59 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 13:08:06 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:08:06 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:08:06 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 13:08:07 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:08:07 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:08:08 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:08:08 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 13:08:09 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:08:10 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:08:11 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:08:11 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:08:12 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:08:13 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:08:13 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:08:14 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:08:14 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:08:14 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:08:21 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/onepagecheckout
+2025-03-10 13:08:22 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:08:22 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 13:08:22 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:08:22
+2025-03-10 13:08:22 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 01 min, 11 sec
+2025-03-10 13:12:44 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:12:44 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:12:44
+2025-03-10 13:12:45 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:12:45 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:12:45 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 1
+2025-03-10 13:12:45 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 1 on Browser: chrome
+2025-03-10 13:12:47 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 133.0.6943.141 (resolved driver for Chrome 133)
+2025-03-10 13:12:47 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\SPidugujothi\.cache\selenium\chromedriver\win64\133.0.6943.141\chromedriver.exe
+2025-03-10 13:12:47 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:12:50 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: chrome
+2025-03-10 13:12:54 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:12:55 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:12:55 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: testUser@myridius.com
+2025-03-10 13:12:55 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:12:55 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:12:56 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:12:56 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: testUser@myridius.com
+2025-03-10 13:12:57 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:12:58 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:12:59 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:12:59 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:13:00 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:13:00 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:13:00 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:13:02 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:13:02 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:13:02 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:13:02 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 13:13:03 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 13:13:04 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 13:13:04 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 13:13:05 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 13:13:07 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 13:13:07 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 13:13:07 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 13:13:07 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1919933 | 03/10/2025 | Pending
+2025-03-10 13:13:08 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Order saved: ID=1919933, Date=03/10/2025, Status=Pending in src/test/resources/TransactionalData.xlsx
+2025-03-10 13:13:09 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Opened Excel file: src/test/resources/TransactionalData.xlsx
+2025-03-10 13:13:09 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1919933
+2025-03-10 13:13:10 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:13:10 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 13:13:10 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:13:10
+2025-03-10 13:13:10 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 25 sec
+2025-03-10 13:20:31 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:20:31 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:20:31
+2025-03-10 13:20:32 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:20:32 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:20:32 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 1
+2025-03-10 13:20:32 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 1 on Browser: chrome
+2025-03-10 13:20:32 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 133.0.6943.141 (resolved driver for Chrome 133)
+2025-03-10 13:20:32 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\SPidugujothi\.cache\selenium\chromedriver\win64\133.0.6943.141\chromedriver.exe
+2025-03-10 13:20:32 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:20:36 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: chrome
+2025-03-10 13:20:40 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:20:41 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:20:41 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: testUser@myridius.com
+2025-03-10 13:20:41 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:20:41 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:20:42 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:20:42 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: testUser@myridius.com
+2025-03-10 13:20:43 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:20:44 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:20:45 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:20:45 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:20:46 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:20:46 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:20:47 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:20:48 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:20:48 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:20:48 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:20:49 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 13:20:49 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 13:20:50 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 13:20:51 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 13:20:52 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 13:20:53 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 13:20:53 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 13:20:54 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 13:20:54 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1919934 | 03/10/2025 | Pending
+2025-03-10 13:20:54 [main] ERROR com.AutoPOC.utils.OrderDataUtil - Error writing to file: src/test/resources/TransactionalData.xlsx
+java.io.FileNotFoundException: src\test\resources\TransactionalData.xlsx (The process cannot access the file because it is being used by another process)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:295)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:124)
+	at com.AutoPOC.utils.OrderDataUtil.writeOrderData(OrderDataUtil.java:51)
+	at com.AutoPOC.pages.OrderInformationPage.saveOrderDetailsToExcelFile(OrderInformationPage.java:94)
+	at com.AutoPOC.tests.OrderTest.addProductsToCart(OrderTest.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+2025-03-10 13:20:54 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1919934
+2025-03-10 13:20:55 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:20:55 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 13:20:55 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:20:55
+2025-03-10 13:20:55 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 23 sec
+2025-03-10 13:32:47 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:32:47 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:32:47
+2025-03-10 13:32:48 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:32:48 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:32:48 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 1
+2025-03-10 13:32:48 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 1 on Browser: chrome
+2025-03-10 13:32:51 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 134.0.6998.35 (resolved driver for Chrome 134)
+2025-03-10 13:32:51 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win64/chromedriver-win64.zip
+2025-03-10 13:32:55 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2025-03-10 13:32:55 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\SPidugujothi\.cache\selenium\chromedriver\win64\134.0.6998.35\chromedriver.exe
+2025-03-10 13:32:55 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:33:03 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: chrome
+2025-03-10 13:33:07 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:33:07 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:33:07 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: testUser@myridius.com
+2025-03-10 13:33:08 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:33:08 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:33:09 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:33:09 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: testUser@myridius.com
+2025-03-10 13:33:10 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:33:11 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:33:12 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:33:12 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:33:13 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/cart
+2025-03-10 13:33:14 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:33:14 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 13:33:14 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:33:14
+2025-03-10 13:33:14 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 26 sec
+2025-03-10 13:39:51 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:39:51 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:39:51
+2025-03-10 13:39:52 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:39:52 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:39:52 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 1
+2025-03-10 13:39:52 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 1 on Browser: chrome
+2025-03-10 13:39:54 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 134.0.6998.35 (resolved driver for Chrome 134)
+2025-03-10 13:39:55 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win64/chromedriver-win64.zip
+2025-03-10 13:40:00 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2025-03-10 13:40:00 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\SPidugujothi\.cache\selenium\chromedriver\win64\134.0.6998.35\chromedriver.exe
+2025-03-10 13:40:00 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:40:12 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: chrome
+2025-03-10 13:40:16 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:40:17 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:40:17 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: testUser@myridius.com
+2025-03-10 13:40:17 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:40:17 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:40:18 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:40:18 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: testUser@myridius.com
+2025-03-10 13:40:19 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:40:21 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:40:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:40:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:40:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:40:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:40:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:40:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:40:25 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:40:25 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:40:25 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 13:40:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 13:40:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 13:40:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 13:40:28 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 13:40:29 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 13:40:30 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 13:40:30 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 13:40:30 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1919950 | 03/10/2025 | Pending
+2025-03-10 13:40:30 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Order saved: ID=1919950, Date=03/10/2025, Status=Pending in src/test/resources/TransactionalData.xlsx
+2025-03-10 13:40:31 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Opened Excel file: src/test/resources/TransactionalData.xlsx
+2025-03-10 13:40:32 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1919950
+2025-03-10 13:40:32 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:40:32 [main] INFO  com.AutoPOC.BaseTest - WebDriver quit successfully.
+2025-03-10 13:40:32 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:40:32
+2025-03-10 13:40:32 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 40 sec
+2025-03-10 13:44:53 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:44:53 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:44:53
+2025-03-10 13:44:53 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:44:53 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:44:53 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 1
+2025-03-10 13:44:53 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 1 on Browser: chrome
+2025-03-10 13:44:55 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 134.0.6998.35 (resolved driver for Chrome 134)
+2025-03-10 13:44:56 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win64/chromedriver-win64.zip
+2025-03-10 13:45:06 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2025-03-10 13:45:06 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\SPidugujothi\.cache\selenium\chromedriver\win64\134.0.6998.35\chromedriver.exe
+2025-03-10 13:45:06 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized, --disable-popup-blocking]
+2025-03-10 13:45:10 [main] INFO  com.AutoPOC.utils.DriverFactory - Browser window maximized explicitly.
+2025-03-10 13:45:10 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: chrome
+2025-03-10 13:45:13 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:45:14 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:45:14 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: testUser@myridius.com
+2025-03-10 13:45:14 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:45:15 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:45:16 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:45:16 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: testUser@myridius.com
+2025-03-10 13:45:17 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:45:18 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:45:19 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:45:19 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:45:20 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:45:20 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:45:21 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:45:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:45:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:45:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:45:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 13:45:24 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 13:45:25 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 13:45:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 13:45:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 13:45:28 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 13:45:28 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 13:45:29 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 13:45:29 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1919958 | 03/10/2025 | Pending
+2025-03-10 13:45:29 [main] ERROR com.AutoPOC.utils.OrderDataUtil - Error writing to file: src/test/resources/TransactionalData.xlsx
+java.io.FileNotFoundException: src\test\resources\TransactionalData.xlsx (The process cannot access the file because it is being used by another process)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:295)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:124)
+	at com.AutoPOC.utils.OrderDataUtil.writeOrderData(OrderDataUtil.java:51)
+	at com.AutoPOC.pages.OrderInformationPage.saveOrderDetailsToExcelFile(OrderInformationPage.java:94)
+	at com.AutoPOC.tests.OrderTest.addProductsToCart(OrderTest.java:25)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+2025-03-10 13:45:29 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1919958
+2025-03-10 13:45:29 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:45:29 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:45:29
+2025-03-10 13:45:29 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 36 sec
+2025-03-10 13:53:36 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:53:36 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:53:36
+2025-03-10 13:53:37 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:53:37 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:53:37 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 13:53:37 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 13:53:39 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 13:53:39 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Reading https://msedgedriver.azureedge.net/?restype=container&comp=list to seek msedgedriver
+2025-03-10 13:53:40 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Downloading https://msedgewebdriverstorage.blob.core.windows.net/edgewebdriver/134.0.3124.51/edgedriver_win64.zip
+2025-03-10 13:53:48 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file edgedriver_win64.zip
+2025-03-10 13:53:48 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 13:53:48 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized]
+2025-03-10 13:53:52 [main] INFO  com.AutoPOC.utils.DriverFactory - Browser window maximized explicitly.
+2025-03-10 13:53:52 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 13:53:57 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:53:58 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:53:58 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 13:53:59 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:53:59 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:54:00 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:54:00 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 13:54:01 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:54:03 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:54:04 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:54:04 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:54:04 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 13:54:05 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 13:54:05 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 13:54:05 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 13:54:06 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 13:54:06 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 13:54:13 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/onepagecheckout
+2025-03-10 13:54:15 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:54:15 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:54:15
+2025-03-10 13:54:15 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 38 sec
+2025-03-10 13:59:07 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 13:59:07 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 13:59:07
+2025-03-10 13:59:08 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 13:59:08 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 13:59:08 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 13:59:08 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 13:59:10 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 13:59:10 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Reading https://msedgedriver.azureedge.net/?restype=container&comp=list to seek msedgedriver
+2025-03-10 13:59:12 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Downloading https://msedgewebdriverstorage.blob.core.windows.net/edgewebdriver/134.0.3124.51/edgedriver_win64.zip
+2025-03-10 13:59:21 [main] INFO  i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file edgedriver_win64.zip
+2025-03-10 13:59:21 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.webdriver-cache\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 13:59:21 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized]
+2025-03-10 13:59:26 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 13:59:31 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 13:59:32 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 13:59:32 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 13:59:32 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 13:59:32 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 13:59:33 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 13:59:33 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 13:59:34 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 13:59:36 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 13:59:37 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 13:59:37 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 13:59:38 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/cart
+2025-03-10 13:59:39 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 13:59:39 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 13:59:39
+2025-03-10 13:59:39 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 31 sec
+2025-03-10 14:01:44 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 14:01:44 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 14:01:44
+2025-03-10 14:01:45 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 14:01:45 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 14:01:45 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 14:01:45 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 14:01:45 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 14:01:45 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 14:01:45 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized]
+2025-03-10 14:01:49 [main] INFO  com.AutoPOC.utils.DriverFactory - ✅ Browser window maximized explicitly.
+2025-03-10 14:01:49 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 14:01:53 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 14:01:53 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 14:01:53 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 14:01:54 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 14:01:54 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 14:01:55 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 14:01:55 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 14:01:56 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 14:01:57 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 14:01:58 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 14:01:58 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 14:01:59 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: AA (Armed Forces Americas)
+2025-03-10 14:01:59 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 14:01:59 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 14:02:00 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 14:02:01 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 14:02:01 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 14:02:08 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/onepagecheckout
+2025-03-10 14:02:10 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 14:02:10 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 14:02:10
+2025-03-10 14:02:10 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 25 sec
+2025-03-10 14:12:07 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 14:12:07 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 14:12:07
+2025-03-10 14:12:08 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 14:12:08 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 14:12:08 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 14:12:08 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 14:12:08 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 14:12:08 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 14:12:08 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized]
+2025-03-10 14:12:13 [main] INFO  com.AutoPOC.utils.DriverFactory - Browser window maximized explicitly.
+2025-03-10 14:12:13 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 14:12:17 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 14:12:18 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 14:12:18 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 14:12:18 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 14:12:19 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 14:12:20 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 14:12:20 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 14:12:21 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 14:12:22 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 14:12:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 14:12:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 14:12:24 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: Federated States of Micronesia
+2025-03-10 14:12:24 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 14:12:24 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 14:12:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 14:12:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 14:12:26 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 14:12:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 14:12:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 14:12:28 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 14:12:29 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 14:12:29 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 14:12:30 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 14:12:31 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 14:12:31 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 14:12:31 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1919989 | 03/10/2025 | Pending
+2025-03-10 14:12:32 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Order saved: ID=1919989, Date=03/10/2025, Status=Pending in src/test/resources/TransactionalData.xlsx
+2025-03-10 14:12:33 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Opened Excel file: src/test/resources/TransactionalData.xlsx
+2025-03-10 14:12:33 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1919989
+2025-03-10 14:12:35 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 14:12:35 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 14:12:35
+2025-03-10 14:12:35 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 00 min, 28 sec
+2025-03-10 15:04:26 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\SPidugujothi\AppData\Local\JetBrains\IntelliJIdea2024.3\temp-testng-customsuite.xml
+
+2025-03-10 15:04:26 [main] INFO  com.AutoPOC.BaseTest - Test Execution Started at: 2025-03-10 15:04:26
+2025-03-10 15:04:30 [main] INFO  com.AutoPOC.BaseTest - Login credentials loaded successfully.
+2025-03-10 15:04:30 [main] INFO  com.AutoPOC.BaseTest - Setting up WebDriver before test execution.
+2025-03-10 15:04:30 [main] INFO  com.AutoPOC.BaseTest - Fetching test data for Test ID: 2
+2025-03-10 15:04:30 [main] INFO  com.AutoPOC.BaseTest - Running Test ID: 2 on Browser: edge
+2025-03-10 15:04:37 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using msedgedriver 134.0.3124.51 (resolved driver for Edge 134)
+2025-03-10 15:04:38 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\SPidugujothi\.cache\selenium\msedgedriver\win64\134.0.3124.51\msedgedriver.exe
+2025-03-10 15:04:38 [main] INFO  com.AutoPOC.utils.DriverFactory - Applying browser arguments: [--start-maximized]
+2025-03-10 15:04:51 [main] INFO  com.AutoPOC.utils.DriverFactory - Browser window maximized explicitly.
+2025-03-10 15:04:51 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver initialized for browser: edge
+2025-03-10 15:04:57 [main] INFO  com.AutoPOC.BaseTest - Navigated to URL: https://demowebshop.tricentis.com
+2025-03-10 15:04:59 [main] INFO  com.AutoPOC.pages.LoginPage - Main Login button clicked
+2025-03-10 15:04:59 [main] INFO  com.AutoPOC.pages.LoginPage - Attempting to login with email: sriUser@demoshop.com
+2025-03-10 15:05:00 [main] INFO  com.AutoPOC.pages.LoginPage - Email entered
+2025-03-10 15:05:02 [main] INFO  com.AutoPOC.pages.LoginPage - Password entered
+2025-03-10 15:05:04 [main] INFO  com.AutoPOC.pages.LoginPage - Login button clicked
+2025-03-10 15:05:04 [main] INFO  com.AutoPOC.BaseTest - Successfully logged in as: sriUser@demoshop.com
+2025-03-10 15:05:06 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Category is clicked
+2025-03-10 15:05:10 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Item added to cart
+2025-03-10 15:05:11 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shopping cart button is clicked
+2025-03-10 15:05:13 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - United States is selected
+2025-03-10 15:05:20 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Selected state: Puerto Rico
+2025-03-10 15:05:23 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Estimate shipping button clicked
+2025-03-10 15:05:24 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Terms of service accepted
+2025-03-10 15:05:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout button clicked
+2025-03-10 15:05:27 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Checkout page is visible
+2025-03-10 15:05:28 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Billing continue button clicked
+2025-03-10 15:05:30 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping continue button clicked
+2025-03-10 15:05:32 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Shipping method continue button clicked
+2025-03-10 15:05:34 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment method continue button clicked
+2025-03-10 15:05:36 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Payment info continue button clicked
+2025-03-10 15:05:38 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order confirmed
+2025-03-10 15:05:39 [main] INFO  c.A.p.AddProductsToCartAndPlaceOrder - Order success message verified successfully.
+2025-03-10 15:05:41 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Order details link clicked
+2025-03-10 15:05:41 [main] INFO  c.AutoPOC.pages.OrderInformationPage - Getting order ID...
+2025-03-10 15:05:42 [main] INFO  c.AutoPOC.pages.OrderInformationPage - 1920064 | 03/10/2025 | Pending
+2025-03-10 15:05:43 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Order saved: ID=1920064, Date=03/10/2025, Status=Pending in src/test/resources/TransactionalData.xlsx
+2025-03-10 15:05:46 [main] INFO  com.AutoPOC.utils.OrderDataUtil - Opened Excel file: src/test/resources/TransactionalData.xlsx
+2025-03-10 15:05:47 [main] INFO  com.AutoPOC.utils.DriverFactory - Cleared cookies for the current URL: https://demowebshop.tricentis.com/orderdetails/1920064
+2025-03-10 15:05:52 [main] INFO  com.AutoPOC.utils.DriverFactory - WebDriver quit successfully.
+2025-03-10 15:05:52 [main] INFO  com.AutoPOC.BaseTest - Test Execution Ended at: 2025-03-10 15:05:52
+2025-03-10 15:05:52 [main] INFO  com.AutoPOC.BaseTest - Total Execution Time: 01 min, 25 sec

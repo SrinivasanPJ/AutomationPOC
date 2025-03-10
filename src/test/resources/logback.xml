@@ -1,0 +1,42 @@
+<configuration>
+
+    <!-- Define Log Directory Property -->
+    <property name="LOG_DIR" value="logs"/>
+
+    <!-- Console Logging (Enhanced with Colors) -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling File Logging (Daily Rotation + Splits Large Files) -->
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/automation.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Log File Rotation: Daily logs + Split into 10MB chunks if large -->
+            <fileNamePattern>${LOG_DIR}/automation-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- Limit log file size per chunk -->
+            <maxFileSize>10MB</maxFileSize>
+
+            <!-- Keep all historical logs (no deletion) -->
+            <maxHistory>0</maxHistory>  <!-- 0 means keep all logs forever -->
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger for org.AutoPOC (DEBUG Level) -->
+    <logger name="org.AutoPOC" level="DEBUG"/>
+
+    <!-- Root Logger (INFO Level) -->
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="RollingFile"/>
+    </root>
+
+</configuration>
