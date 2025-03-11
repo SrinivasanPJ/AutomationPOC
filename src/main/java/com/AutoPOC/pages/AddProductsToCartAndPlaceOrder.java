@@ -1,6 +1,7 @@
 package com.AutoPOC.pages;
 
 import com.AutoPOC.BasePage;
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -14,6 +15,7 @@ import java.util.Random;
 public class AddProductsToCartAndPlaceOrder extends BasePage {
 
     private static final Logger logger = LoggerFactory.getLogger(AddProductsToCartAndPlaceOrder.class);
+    private final Faker faker = new Faker();
 
     @FindBy(xpath = "//input[@id='add-to-cart-button-5']")
     private WebElement addToCartButton;
@@ -21,19 +23,19 @@ public class AddProductsToCartAndPlaceOrder extends BasePage {
     @FindBy(xpath = "//div[@class='item-box'][1]//img")
     private WebElement clickOnItem;
 
-    @FindBy(xpath = "//li[@class='inactive']//a[normalize-space()='Apparel & Shoes']")
-    private WebElement category;
+    @FindBy(xpath = "//ul[@class='top-menu']//a[@href='/apparel-shoes']")
+    private WebElement categoryHeader;
 
     @FindBy(xpath = "//span[normalize-space()='Shopping cart']")
     private WebElement shoppingCartButton;
 
-    @FindBy(xpath = "//select[@id='CountryId']")
+    @FindBy(xpath = "//select[@id='CountryId' or @id='BillingNewAddress_CountryId']")
     private WebElement countryDropdown;
 
-    @FindBy(xpath = "//select[@id='StateProvinceId']")
+    @FindBy(xpath = "//select[@id='StateProvinceId' or @id ='BillingNewAddress_StateProvinceId']")
     private WebElement stateDropdown;
 
-    @FindBy(xpath = "//select[@id='StateProvinceId']/option")
+    @FindBy(xpath = "//select[@id='BillingNewAddress_StateProvinceId' or @id='StateProvinceId']/option")
     private List<WebElement> stateOptions;
 
     @FindBy(xpath = "//input[@name='estimateshipping']")
@@ -69,15 +71,79 @@ public class AddProductsToCartAndPlaceOrder extends BasePage {
     @FindBy(xpath = "//strong[text()='Your order has been successfully processed!']")
     private WebElement successMessage;
 
-    @FindBy(xpath = "//select[@id='shipping-address-select']")
-    private WebElement shippingAddressSelect;
+    @FindBy(xpath = "//input[@id='BillingNewAddress_FirstName']")
+    private WebElement billingFirstName;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_LastName']")
+    private WebElement billingLastName;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_Email']")
+    private WebElement billingEmail;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_Company']")
+    private WebElement billingCompany;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_City']")
+    private WebElement billingCity;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_Address1']")
+    private WebElement billingAddress1;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_Address2']")
+    private WebElement billingAddress2;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_ZipPostalCode']")
+    private WebElement billingZipPostalCode;
+
+    @FindBy(xpath = "//input[@id='BillingNewAddress_PhoneNumber']")
+    private WebElement billingPhoneNumber;
+
+    @FindBy(css = "div[class='header-links'] a[class='account']")
+    private WebElement accountLink;
+
+    @FindBy(xpath = "//a[@class='inactive'][normalize-space()='Addresses']")
+    private WebElement addressesLink;
+
+    @FindBy(xpath = "//input[@value='Delete']")
+    private WebElement deleteAddressButton;
+
+    @FindBy(xpath = "//input[@value='Add new']")
+    private WebElement addNewAddressButton;
+
+    public void clickOnAccountLink() {
+        click(accountLink);
+        logger.info("Account link clicked");
+    }
+
+    public void clickOnAddressesLink() {
+        click(addressesLink);
+        logger.info("Addresses link clicked");
+    }
+
+    public void clickOnDeleteAddressButton() {
+        click(deleteAddressButton);
+        logger.info("Delete address button clicked");
+    }
+
+    public void deleteAddress() {
+        clickOnAccountLink();
+        clickOnAddressesLink();
+        waitForElementToBeVisible(addNewAddressButton, 5);
+        if (addNewAddressButton.isDisplayed()) {
+            clickOnCategory();
+        } else {
+            clickOnDeleteAddressButton();
+            acceptAlert();
+            logger.info("Address deleted successfully.");
+        }
+    }
 
     /**
      * Clicks on Apparel & Shoes category
      */
     public void clickOnCategory() {
-        waitForElementToBeClickable(category, 5);
-        category.click();
+        waitForElementToBeClickable(categoryHeader, 5);
+        categoryHeader.click();
         logger.info("Category is clicked");
     }
 
@@ -153,6 +219,49 @@ public class AddProductsToCartAndPlaceOrder extends BasePage {
     public void waitForCheckoutPageVisible() {
         waitForElementToBeVisible(checkoutHeader, 7);
         logger.info("Checkout page is visible");
+    }
+
+    public void fillBillingDetails() {
+
+        click(billingFirstName);
+        sendKeys(billingFirstName, faker.name().firstName());
+        logger.info("Billing first name filled");
+
+        click(billingLastName);
+        sendKeys(billingLastName, faker.name().lastName());
+        logger.info("Billing last name filled");
+
+        click(billingEmail);
+        sendKeys(billingEmail, faker.internet().emailAddress());
+        logger.info("Billing email filled");
+
+        click(billingCompany);
+        sendKeys(billingCompany, faker.company().name());
+        logger.info("Billing company filled");
+
+        selectUnitedStates();
+        selectRandomState();
+
+        //waitForElementToBeClickable(billingCity, 5);
+        click(billingCity);
+        sendKeys(billingCity, faker.address().city());
+        logger.info("Billing city filled");
+
+        click(billingAddress1);
+        sendKeys(billingAddress1, faker.address().streetAddress());
+        logger.info("Billing address filled");
+
+        click(billingAddress2);
+        sendKeys(billingAddress2, faker.address().secondaryAddress());
+        logger.info("Billing address 2 filled");
+
+        click(billingZipPostalCode);
+        sendKeys(billingZipPostalCode, faker.address().zipCode());
+        logger.info("Billing zip code filled");
+
+        click(billingPhoneNumber);
+        sendKeys(billingPhoneNumber, faker.phoneNumber().cellPhone());
+        logger.info("Billing phone number filled");
     }
 
     /**

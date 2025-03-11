@@ -86,7 +86,7 @@ public class BasePage {
      * Accepts an alert if present.
      */
     public void acceptAlert() {
-        waitForAlert(DEFAULT_TIMEOUT).accept();
+        waitForAlert(10).accept();
     }
 
     /**
