@@ -1,7 +1,7 @@
 <suite name="TestSuite" parallel="methods" thread-count="1">
     <test name="AllTests">
         <packages>
-            <package name="com.AutoPOC.tests"/>  <!-- ✅ Runs all test classes inside `tests` package -->
+            <package name="com.AutoPOC.tests"/>
         </packages>
     </test>
 </suite>

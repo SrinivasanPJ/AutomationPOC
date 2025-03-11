@@ -12,6 +12,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -110,8 +112,9 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver.get() != null) {
             try {
+                // Clear all cookies for the entire domain
                 driver.get().manage().deleteAllCookies();
-                logger.info("Cleared cookies for the current URL: {}", driver.get().getCurrentUrl());
+                logger.info("Cleared all cookies for the domain: {}", getDomain(driver.get().getCurrentUrl()));
 
                 driver.get().quit();
                 logger.info("WebDriver quit successfully.");
@@ -122,4 +125,16 @@ public class DriverFactory {
             }
         }
     }
+
+    // Helper method to extract the domain from a URL
+    private static String getDomain(String url) {
+        try {
+            URL parsedUrl = new URL(url);
+            return parsedUrl.getProtocol() + "://" + parsedUrl.getHost();
+        } catch (MalformedURLException e) {
+            logger.error("Error parsing URL: {}", e.getMessage(), e);
+            return url; // Return the original URL in case of an error
+        }
+    }
+
 }
