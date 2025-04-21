@@ -7,7 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+/**
+ * Page object for handling login functionality.
+ * Includes actions for entering credentials, clicking login,
+ * and validating login success.
+ */
 public class LoginPage extends BasePage {
+
     private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
     @FindBy(xpath = "//a[@class='ico-login']")
@@ -47,15 +53,13 @@ public class LoginPage extends BasePage {
      * @throws AssertionError if the login attempt is not successful.
      */
     public void login(String user, String pass) {
-        click(loginLink);
-        logger.info("Main Login button clicked");
+        click(loginLink, "Main Login button clicked");
         logger.info("Attempting to login with email: {}", user);
         sendKeys(email, user);
         logger.info("Email entered");
         sendKeys(password, pass);
         logger.info("Password entered");
-        click(loginButton);
-        logger.info("Login button clicked");
+        click(loginButton, "Login button clicked");
         Assert.assertTrue(isLoginSuccessful(), "Login was not successful.");
     }
 }
