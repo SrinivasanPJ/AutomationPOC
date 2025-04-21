@@ -1,42 +1,32 @@
 package com.AutoPOC.pages;
 
 import com.AutoPOC.BasePage;
-import com.github.javafaker.Faker;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+/**
+ * Page object that encapsulates all actions related to
+ * adding products to cart and completing the order process.
+ */
 public class AddProductsToCartAndPlaceOrder extends BasePage {
 
     private static final Logger logger = LoggerFactory.getLogger(AddProductsToCartAndPlaceOrder.class);
-    private final Faker faker = new Faker();
 
-    @FindBy(xpath = "//input[@id='add-to-cart-button-5']")
-    private WebElement addToCartButton;
+    @FindBy(css = "div.header-links a.account")
+    private WebElement accountLink;
 
-    @FindBy(xpath = "//div[@class='item-box'][1]//img")
-    private WebElement clickOnItem;
+    @FindBy(xpath = "//a[contains(@class, 'active') or contains(@class, 'inactive')][normalize-space()='Addresses']")
+    private WebElement addressesLink;
 
-    @FindBy(xpath = "//ul[@class='top-menu']//a[@href='/apparel-shoes']")
-    private WebElement categoryHeader;
-
-    @FindBy(xpath = "//span[normalize-space()='Shopping cart']")
-    private WebElement shoppingCartButton;
-
-    @FindBy(xpath = "//select[@id='CountryId' or @id='BillingNewAddress_CountryId']")
-    private WebElement countryDropdown;
-
-    @FindBy(xpath = "//select[@id='StateProvinceId' or @id ='BillingNewAddress_StateProvinceId']")
-    private WebElement stateDropdown;
-
-    @FindBy(xpath = "//select[@id='BillingNewAddress_StateProvinceId' or @id='StateProvinceId']/option")
-    private List<WebElement> stateOptions;
+    @FindBy(xpath = "//input[@value='Delete']")
+    private WebElement deleteAddressButton;
 
     @FindBy(xpath = "//input[@name='estimateshipping']")
     private WebElement estimateShippingButton;
@@ -44,258 +34,176 @@ public class AddProductsToCartAndPlaceOrder extends BasePage {
     @FindBy(xpath = "//input[@id='termsofservice']")
     private WebElement termsOfService;
 
+    @FindBy(xpath = "//input[starts-with(@onclick,'Billing.save')"
+            + " or starts-with(@onclick,'Shipping.save')"
+            + " or starts-with(@onclick,'ShippingMethod.save')"
+            + " or starts-with(@onclick,'PaymentMethod.save')"
+            + " or starts-with(@onclick,'PaymentInfo.save')"
+            + " or starts-with(@onclick,'ConfirmOrder.save')]")
+    private List<WebElement> continueButtons;
+
+    @FindBy(xpath = "//strong[text()='Your order has been successfully processed!']")
+    private WebElement successMessage;
+
+    @FindBy(xpath = "//input[starts-with(@id, 'add-to-cart-button')]")
+    private WebElement addToCartButton;
+
+    @FindBy(xpath = "//span[normalize-space()='Shopping cart']")
+    private WebElement shoppingCartButton;
+
+    @FindBy(xpath = "//select[@id='BillingNewAddress_CountryId']")
+    private WebElement countryDropdown;
+
+    @FindBy(xpath = "//select[@id='BillingNewAddress_StateProvinceId']")
+    private WebElement stateDropdown;
+
     @FindBy(xpath = "//div[@class='checkout-buttons']")
     private WebElement checkoutButton;
 
     @FindBy(xpath = "//h1[text()='Checkout']")
     private WebElement checkoutHeader;
 
-    @FindBy(xpath = "//input[@onclick='Billing.save()']")
-    private WebElement billingContinueButton;
-
-    @FindBy(xpath = "//input[@onclick='Shipping.save()']")
-    private WebElement shippingContinueButton;
-
-    @FindBy(xpath = "//input[@onclick='ShippingMethod.save()']")
-    private WebElement shippingMethodContinueButton;
-
-    @FindBy(xpath = "//input[@onclick='PaymentMethod.save()']")
-    private WebElement paymentMethodContinueButton;
-
-    @FindBy(xpath = "//input[@onclick='PaymentInfo.save()']")
-    private WebElement paymentInfoContinueButton;
-
-    @FindBy(xpath = "//input[@onclick='ConfirmOrder.save()']")
-    private WebElement confirmOrderButton;
-
-    @FindBy(xpath = "//strong[text()='Your order has been successfully processed!']")
-    private WebElement successMessage;
-
-    @FindBy(xpath = "//input[@id='BillingNewAddress_FirstName']")
+    @FindBy(id = "BillingNewAddress_FirstName")
     private WebElement billingFirstName;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_LastName']")
+    @FindBy(id = "BillingNewAddress_LastName")
     private WebElement billingLastName;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_Email']")
+    @FindBy(id = "BillingNewAddress_Email")
     private WebElement billingEmail;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_Company']")
-    private WebElement billingCompany;
-
-    @FindBy(xpath = "//input[@id='BillingNewAddress_City']")
+    @FindBy(id = "BillingNewAddress_City")
     private WebElement billingCity;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_Address1']")
+    @FindBy(id = "BillingNewAddress_Address1")
     private WebElement billingAddress1;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_Address2']")
-    private WebElement billingAddress2;
-
-    @FindBy(xpath = "//input[@id='BillingNewAddress_ZipPostalCode']")
+    @FindBy(id = "BillingNewAddress_ZipPostalCode")
     private WebElement billingZipPostalCode;
 
-    @FindBy(xpath = "//input[@id='BillingNewAddress_PhoneNumber']")
+    @FindBy(id = "BillingNewAddress_PhoneNumber")
     private WebElement billingPhoneNumber;
 
-    @FindBy(css = "div[class='header-links'] a[class='account']")
-    private WebElement accountLink;
+    @FindBy(xpath = "//input[contains(@class,'confirm-order-next-step-button') and @value='Confirm']")
+    private WebElement confirmOrderButton;
 
-    @FindBy(xpath = "//a[@class='inactive'][normalize-space()='Addresses']")
-    private WebElement addressesLink;
+    // ─── Workflow Methods ───────────────────────────────────────────────
 
-    @FindBy(xpath = "//input[@value='Delete']")
-    private WebElement deleteAddressButton;
+    public void deleteAddress() throws InterruptedException {
+        click(accountLink, "Clicked Account link");
+        click(addressesLink, "Clicked Addresses link");
 
-    @FindBy(xpath = "//input[@value='Add new']")
-    private WebElement addNewAddressButton;
+        if (isDisplayed(deleteAddressButton, 5)) {
+            deleteAddressButton.click();
+            logger.info("Clicked delete button");
 
-    public void clickOnAccountLink() {
-        click(accountLink);
-        logger.info("Account link clicked");
-    }
+            Alert alert = driver.switchTo().alert();
+            logger.info("Alert displayed: {}", alert.getText());
+            alert.accept();
+            logger.info("Alert accepted");
 
-    public void clickOnAddressesLink() {
-        click(addressesLink);
-        logger.info("Addresses link clicked");
-    }
+            driver.navigate().refresh();
+            logger.info("Page refreshed using navigate().refresh()");
 
-    public void clickOnDeleteAddressButton() {
-        click(deleteAddressButton);
-        logger.info("Delete address button clicked");
-    }
+            Thread.sleep(2000);
+            boolean deleted = waitUntilElementGone(deleteAddressButton);
+            logger.info(deleted ? "Address deleted successfully." : "Delete button still visible or address block not cleared.");
+        }
 
-    public void deleteAddress() {
-        clickOnAccountLink();
-        clickOnAddressesLink();
-        waitForElementToBeVisible(addNewAddressButton, 5);
-        if (addNewAddressButton.isDisplayed()) {
-            clickOnCategory();
+        if (getNumberOfAddresses() == 0) {
+            logger.info("No address found. Proceeding to product selection.");
+            selectProductBasedOnInputData();
         } else {
-            clickOnDeleteAddressButton();
-            acceptAlert();
-            logger.info("Address deleted successfully.");
+            logger.info("Address still present, skipping product selection.");
         }
     }
 
-    /**
-     * Clicks on Apparel & Shoes category
-     */
-    public void clickOnCategory() {
-        waitForElementToBeClickable(categoryHeader, 5);
-        categoryHeader.click();
-        logger.info("Category is clicked");
-    }
-
-    /**
-     * Clicks on a product and adds it to the cart
-     */
-    public void clickOnItemAndAddToCart() {
-        click(clickOnItem);
-        click(addToCartButton);
-        logger.info("Item added to cart");
-    }
-
-    /**
-     * Clicks on the Shopping Cart button
-     */
-    public void clickShoppingCartButton() {
-        click(shoppingCartButton);
-        logger.info("Shopping cart button is clicked");
-    }
-
-    /**
-     * Selects United States from Country dropdown
-     */
-    public void selectUnitedStates() {
-        waitForElementToBeClickable(countryDropdown, 5);
-        new Select(countryDropdown).selectByVisibleText("United States");
-        logger.info("United States is selected");
-    }
-
-    /**
-     * Selects a random state from the dropdown
-     */
-    public void selectRandomState() {
-        click(stateDropdown);
-        Random random = new Random();
-        int randomIndex = random.nextInt(stateOptions.size());
-        new Select(stateDropdown).selectByIndex(randomIndex);
-
-        if (!stateOptions.isEmpty()) {
-            logger.info("Selected state: {}", stateOptions.get(randomIndex).getText());
-        } else {
-            logger.warn("State options list is empty! No state was selected.");
-        }
-    }
-
-    /**
-     * Clicks the Estimate Shipping button
-     */
-    public void clickOnEstimateShippingButton() {
-        click(estimateShippingButton);
-        logger.info("Estimate shipping button clicked");
-    }
-
-    /**
-     * Clicks on the Terms of Service checkbox
-     */
     public void clickTermsOfServiceButton() {
-        click(termsOfService);
-        logger.info("Terms of service accepted");
+        click(termsOfService, "Terms of service accepted");
     }
 
-    /**
-     * Clicks the Checkout button
-     */
-    public void clickCheckoutButton() {
-        click(checkoutButton);
-        logger.info("Checkout button clicked");
+    public void checkoutConfirmation() {
+        try {
+            confirmOrderButton.click();
+            logger.info("Confirm order clicked immediately without wait");
+        } catch (Exception e) {
+            logger.warn("Immediate click failed, retrying with wait...");
+            waitUntilVisible(confirmOrderButton, 5);
+            waitUntilClickable(confirmOrderButton, 5);
+            confirmOrderButton.click();
+        }
     }
 
-    /**
-     * Waits for the Checkout page to be visible
-     */
+    public void selectProductBasedOnInputData() {
+        Map<String, String> data = getInputData();
+        clickBy("Category", data.get("Category"), "//ul[@class='top-menu']//a[normalize-space()='%s']");
+        clickBy("Sub-Category", data.get("Sub-Category"), "//div[@class='sub-category-item']//a[normalize-space()='%s']");
+        clickBy("Product title", data.get("Product title"), "//h2[@class='product-title']/a[contains(text(),'%s')]");
+    }
+
     public void waitForCheckoutPageVisible() {
-        waitForElementToBeVisible(checkoutHeader, 7);
+        waitUntilVisible(checkoutHeader, 7);
         logger.info("Checkout page is visible");
     }
 
-    public void fillBillingDetails() {
-
-        click(billingFirstName);
-        sendKeys(billingFirstName, faker.name().firstName());
-        logger.info("Billing first name filled");
-
-        click(billingLastName);
-        sendKeys(billingLastName, faker.name().lastName());
-        logger.info("Billing last name filled");
-
-        click(billingEmail);
-        sendKeys(billingEmail, faker.internet().emailAddress());
-        logger.info("Billing email filled");
-
-        click(billingCompany);
-        sendKeys(billingCompany, faker.company().name());
-        logger.info("Billing company filled");
-
-        selectUnitedStates();
-        selectRandomState();
-
-        //waitForElementToBeClickable(billingCity, 5);
-        click(billingCity);
-        sendKeys(billingCity, faker.address().city());
-        logger.info("Billing city filled");
-
-        click(billingAddress1);
-        sendKeys(billingAddress1, faker.address().streetAddress());
-        logger.info("Billing address filled");
-
-        click(billingAddress2);
-        sendKeys(billingAddress2, faker.address().secondaryAddress());
-        logger.info("Billing address 2 filled");
-
-        click(billingZipPostalCode);
-        sendKeys(billingZipPostalCode, faker.address().zipCode());
-        logger.info("Billing zip code filled");
-
-        click(billingPhoneNumber);
-        sendKeys(billingPhoneNumber, faker.phoneNumber().cellPhone());
-        logger.info("Billing phone number filled");
+    public void addToCartAndGoToCart() {
+        click(addToCartButton, "Add to Cart clicked");
+        click(shoppingCartButton, "Shopping Cart clicked");
     }
 
-    /**
-     * Clicks Continue buttons in the checkout flow
-     */
-    public void clickOnContinueButtonsInCheckoutPage() {
-        click(billingContinueButton);
-        logger.info("Billing continue button clicked");
-        click(shippingContinueButton);
-        logger.info("Shipping continue button clicked");
-        click(shippingMethodContinueButton);
-        logger.info("Shipping method continue button clicked");
-        click(paymentMethodContinueButton);
-        logger.info("Payment method continue button clicked");
-        click(paymentInfoContinueButton);
-        logger.info("Payment info continue button clicked");
+    public void clickOnEstimateShippingButton() {
+        click(estimateShippingButton, "Estimate shipping button clicked");
     }
 
-    /**
-     * Clicks the Confirm Order button
-     */
-    public void checkoutConfirmation() {
-        click(confirmOrderButton);
-        logger.info("Order confirmed");
+    public void fillBillingDetailsFromInput() throws InterruptedException {
+        Map<String, String> d = getInputData();
+        logger.info("---- synthetic inputData keys&values ----");
+        d.forEach((k, v) -> logger.info("[{}] → [{}]", k, v));
+
+        sendKeys(billingFirstName, d.get("Billing FirstName"));
+        sendKeys(billingLastName, d.get("Billing LastName"));
+        sendKeys(billingEmail, d.get("Email"));
+
+        selectByVisibleText(countryDropdown, d.get("Country"));
+        selectStateOption(d.get("State"));
+
+        sendKeys(billingCity, d.get("City"));
+        sendKeys(billingAddress1, d.get("Address 1"));
+        sendKeys(billingZipPostalCode, d.get("Zip"));
+        sendKeys(billingPhoneNumber, d.get("Phone"));
+
+        logger.info("Filled billing & shipping details");
     }
 
-    /**
-     * Verifies Order Success Message
-     */
+    public void proceedThroughCheckout() {
+        for (WebElement btn : continueButtons) {
+            click(btn, "Clicked continue button");
+        }
+    }
+
+    public void clickCheckoutButton() {
+        click(checkoutButton, "Checkout button clicked");
+    }
+
     public void verifyOrderSuccessMessage() {
-        waitForTextToBePresent(successMessage, "Your order has been successfully processed!", 10);
-        String actualMessage = successMessage.getText().trim();
-        String expectedMessage = "Your order has been successfully processed!";
-        Assert.assertEquals(actualMessage, expectedMessage, "Order success message mismatch!");
-        logger.info("Order success message verified successfully.");
+        waitUntilVisible(successMessage, 10);
+        waitUntilTextPresent(successMessage, "Your order has been successfully processed!", 10);
+        logger.info("Order success message verified");
+    }
+
+    // ─── Helper Methods ────────────────────────────────────────────────
+
+    private void selectStateOption(String state) throws InterruptedException {
+        var select = new Select(stateDropdown);
+        Thread.sleep(3000);
+        var opts = select.getOptions();
+        if (state != null && !state.isBlank()) {
+            select.selectByVisibleText(state);
+            logger.info("Explicitly selected state: {}", state);
+        } else if (!opts.isEmpty()) {
+            String random = opts.get(new Random().nextInt(opts.size())).getText();
+            select.selectByVisibleText(random);
+            logger.info("Random state selected: {}", random);
+        }
     }
 }

@@ -3,13 +3,12 @@ package com.AutoPOC;
 import com.AutoPOC.pages.AddProductsToCartAndPlaceOrder;
 import com.AutoPOC.pages.LoginPage;
 import com.AutoPOC.pages.OrderInformationPage;
-import com.AutoPOC.utils.ConfigReader;
-import com.AutoPOC.utils.DriverFactory;
-import com.AutoPOC.utils.TestDataUtil;
+import com.AutoPOC.utils.*;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -19,84 +18,62 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
- * BaseTest class for setting up test execution, driver initialization, and teardown.
+ * Base test class for initializing the browser, logging in, and recording results.
+ * Provides shared setup/teardown and handles test data loading.
  */
 public class BaseTest {
+
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
-    private static final String TEST_DATA_FILE = ConfigReader.getProperty("Test_Data_File_Path");
     private static Instant startTime;
+
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected AddProductsToCartAndPlaceOrder addProductsToCartAndPlaceOrder;
     protected OrderInformationPage orderInformationPage;
-    private String username;
-    private String password;
 
-    /**
-     * Logs test suite execution start time.
-     */
     @BeforeSuite
     public void suiteSetup() {
         startTime = Instant.now();
         logger.info("Test Execution Started at: {}", getCurrentTime());
     }
 
-    /**
-     * Loads login credentials from test data before the test class execution.
-     */
-    @BeforeClass
-    public void setUpTestData() {
-        Object[][] loginData = TestDataUtil.getLoginDetails(TEST_DATA_FILE, "Login");
-
-        if (loginData.length == 0) {
-            logger.error("No login data found in test data file: {}", TEST_DATA_FILE);
-            throw new RuntimeException("No login data found in the test data file.");
-        }
-
-        username = (String) loginData[0][1];
-        password = (String) loginData[0][2];
-        logger.info("Login credentials loaded successfully.");
-    }
-
-    /**
-     * Initializes WebDriver before each test method execution.
-     */
     @BeforeMethod
     public void setUp() {
         logger.info("Setting up WebDriver before test execution.");
     }
 
     /**
-     * Executes a test for a specific TestID.
+     * Core setup routine that runs once per test case (TestID).
+     * Initializes browser, navigates to the URL, and logs in with test data.
      */
     @Test(dataProvider = "testData")
     public void executeTestForTestID(String testID, ITestContext context) {
-        logger.info("Fetching test data for Test ID: {}", testID);
-        Map<String, String> testData = TestDataUtil.getTestCaseByTestID("Login", testID);
+        logger.info("Fetching test data for TestID: {}", testID);
 
+        Map<String, String> testData = TestDataUtil.getTestCaseByTestID(testID);
         if (testData == null) {
-            logger.error("Test ID '{}' not found in Excel.", testID);
             throw new RuntimeException("TestID " + testID + " not found in Excel!");
         }
 
-        String browser = testData.getOrDefault("browser", "chrome");
-        String testURL = testData.getOrDefault("URL", "about:blank");
-        String testUsername = testData.getOrDefault("username", username);
-        String testPassword = testData.getOrDefault("password", password);
+        String browser = testData.getOrDefault(TestDataKeys.BROWSER, "chrome");
+        String testURL = testData.getOrDefault(TestDataKeys.URL, "about:blank");
+        String username = testData.get(TestDataKeys.USERNAME);
+        String password = testData.get(TestDataKeys.PASSWORD);
+
+        logger.info("Running TestID={} on browser={}", testID, browser);
+        logger.info("URL: {}", testURL);
 
         context.setAttribute("TestID", testID);
         context.setAttribute("Browser", browser);
-
-        logger.info("Running Test ID: {} on Browser: {}", testID, browser);
 
         try {
             DriverFactory.initializeDriver(browser);
             driver = DriverFactory.getDriver();
             driver.get(testURL);
-            logger.info("Navigated to URL: {}", testURL);
+            logger.info("Navigated to: {}", testURL);
         } catch (Exception e) {
-            logger.error("WebDriver initialization failed: {}", e.getMessage(), e);
-            throw new RuntimeException("WebDriver initialization failed: " + e.getMessage());
+            logger.error("WebDriver init failed", e);
+            throw new RuntimeException(e);
         }
 
         loginPage = new LoginPage();
@@ -104,55 +81,69 @@ public class BaseTest {
         orderInformationPage = new OrderInformationPage();
 
         try {
-            loginPage.login(testUsername, testPassword);
-            logger.info("Successfully logged in as: {}", testUsername);
+            loginPage.login(username, password);
+            logger.info("Logged in as {}", username);
         } catch (Exception e) {
-            logger.error("Login failed for user: {}", testUsername, e);
-            throw new RuntimeException("Login failed for user: " + testUsername);
+            logger.error("Login failed for {}", username, e);
+            throw new RuntimeException(e);
         }
     }
 
-    /**
-     * Logs the end time of test suite execution and calculates execution time.
-     */
+    @AfterMethod(alwaysRun = true)
+    public void recordExecutionData(ITestResult result) {
+        if (orderInformationPage != null) {
+            try {
+                Object attr = result.getTestContext().getAttribute("ExcelRowIndex");
+                if (attr instanceof Integer rowIndex) {
+                    ExecutionDataUtil.writeExecutionData(rowIndex, result);
+                    logger.info("Execution data recorded at row {}", rowIndex + 1);
+                } else {
+                    logger.warn("ExcelRowIndex not found in context. Skipping writeExecutionData.");
+                }
+            } catch (Exception e) {
+                logger.error("Failed to write execution data", e);
+            }
+        }
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        try {
+            DriverFactory.quitDriver();
+        } catch (Exception e) {
+            logger.error("Error quitting WebDriver", e);
+        }
+    }
+
+    @AfterMethod
+    public void clearContext() {
+        TestContextManager.clear();
+    }
+
     @AfterSuite
     public void suiteTearDown() {
         logger.info("Test Execution Ended at: {}", getCurrentTime());
         logger.info("Total Execution Time: {}", getExecutionDuration());
     }
 
-    /**
-     * Provides test data from Excel for data-driven tests.
-     */
     @DataProvider(name = "testData")
     public Object[][] getTestData() {
-        Object[][] data = TestDataUtil.getLoginDetails(TEST_DATA_FILE, "Login");
-        Object[][] testIDs = new Object[data.length][1];
-        for (int i = 0; i < data.length; i++) {
-            testIDs[i][0] = data[i][0];
-        }
-        return testIDs;
+        return TestDataUtil.getAllTestIDs();
     }
 
-    /**
-     * Cleans up WebDriver instance after each test method execution.
-     */
-    @AfterMethod
-    public void tearDown() {
-        try {
-            DriverFactory.quitDriver(); // Calls quitDriver, which already logs success
-        } catch (Exception e) {
-            logger.error("Error while quitting WebDriver: {}", e.getMessage(), e);
-        }
+    @DataProvider(name = "syntheticData")
+    public Object[][] syntheticData() {
+        return SyntheticDataUtil.getAllInputIDs();
     }
 
+    // ─── Utility Methods ────────────────────────────────────────────────
 
     private String getCurrentTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     private String getExecutionDuration() {
-        Duration duration = Duration.between(startTime, Instant.now());
-        return String.format("%02d min, %02d sec", duration.toMinutes(), duration.getSeconds() % 60);
+        Duration d = Duration.between(startTime, Instant.now());
+        return String.format("%02d min, %02d sec", d.toMinutes(), d.getSeconds() % 60);
     }
 }

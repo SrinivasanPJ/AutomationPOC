@@ -1,181 +1,153 @@
 package com.AutoPOC;
 
 import com.AutoPOC.utils.DriverFactory;
+import com.AutoPOC.utils.TestContextManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
-import java.util.NoSuchElementException;
+import java.util.Map;
 
 /**
- * BasePage class that provides common utility methods for page interactions.
+ * Abstract base class for all page objects.
+ * Provides reusable methods for element interactions, wait conditions,
+ * and other browser utilities.
+ * Follows Page Object Model design principles.
  */
-public class BasePage {
-    private static final int DEFAULT_TIMEOUT = 6;
-    protected WebDriver driver;
+public abstract class BasePage {
 
-    public BasePage() {
+    private static final Logger logger = LoggerFactory.getLogger(BasePage.class);
+    private static final int DEFAULT_TIMEOUT = 10;
+    protected final WebDriver driver;
+
+    /**
+     * Initializes WebDriver instance and PageFactory elements.
+     */
+    protected BasePage() {
         this.driver = DriverFactory.getDriver();
         PageFactory.initElements(driver, this);
     }
 
-    /**
-     * Waits for an element to be clickable and clicks on it.
-     */
-    public void click(WebElement element) {
-        waitForElementToBeClickable(element, DEFAULT_TIMEOUT);
-        element.click();
+    // ========================= COMMON ACTIONS ========================= //
+
+    protected void click(WebElement element, String logMsg) {
+        waitUntilClickable(element).click();
+        logger.info(logMsg);
     }
 
-    /**
-     * Clears an input field and sends text.
-     */
-    public void sendKeys(WebElement element, String text) {
-        waitForElementToBeVisible(element, DEFAULT_TIMEOUT);
-        element.clear();
+    protected void sendKeys(WebElement element, String text) {
+        waitUntilVisible(element).clear();
         element.sendKeys(text);
     }
 
-    /**
-     * Refreshes the current page.
-     */
-    public void refreshPage() {
-        driver.navigate().refresh();
+    protected void selectByVisibleText(WebElement dropdown, String text) {
+        new Select(dropdown).selectByVisibleText(text);
     }
 
-    /**
-     * Scrolls to a specific element.
-     */
-    public void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    // ========================= WAIT HELPERS ========================= //
+
+    protected WebElement waitUntilVisible(WebElement element) {
+        return waitUntilVisible(element, DEFAULT_TIMEOUT);
     }
 
-    /**
-     * Scrolls down the page by 500 pixels.
-     */
-    public void scrollDown() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500);");
-    }
-
-    /**
-     * Scrolls up the page by 500 pixels.
-     */
-    public void scrollUp() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-500);");
-    }
-
-    /**
-     * Switches to a frame using its locator.
-     */
-    public void switchToFrame(By locator) {
-        WebElement frameElement = driver.findElement(locator);
-        driver.switchTo().frame(frameElement);
-    }
-
-    /**
-     * Switches back to the default frame.
-     */
-    public void switchToDefaultFrame() {
-        driver.switchTo().defaultContent();
-    }
-
-    /**
-     * Accepts an alert if present.
-     */
-    public void acceptAlert() {
-        waitForAlert(10).accept();
-    }
-
-    /**
-     * Dismisses an alert if present.
-     */
-    public void dismissAlert() {
-        waitForAlert(DEFAULT_TIMEOUT).dismiss();
-    }
-
-    /**
-     * Retrieves text from an alert.
-     */
-    public String getAlertText() {
-        return waitForAlert(DEFAULT_TIMEOUT).getText();
-    }
-
-    /**
-     * Waits for an element to be clickable.
-     */
-    public void waitForElementToBeClickable(WebElement element, int timeout) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeout))
-                .until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    /**
-     * Waits for an element to be visible.
-     */
-    public void waitForElementToBeVisible(WebElement element, int timeout) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeout))
+    protected WebElement waitUntilVisible(WebElement element, int timeout) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeout))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    /**
-     * Waits for an element to be present in the DOM.
-     */
-    public void waitForElementToBePresent(By locator, int timeout) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeout))
-                .until(ExpectedConditions.presenceOfElementLocated(locator));
+    protected WebElement waitUntilClickable(WebElement element) {
+        return waitUntilClickable(element, DEFAULT_TIMEOUT);
     }
 
-    /**
-     * Waits for text to be present in an element.
-     */
-    public void waitForTextToBePresent(WebElement element, String text, int timeout) {
+    protected WebElement waitUntilClickable(WebElement element, int timeout) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeout))
+                .until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected WebElement waitUntilClickable(By locator, int timeout) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeout))
+                .until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected void waitUntilTextPresent(WebElement element, String text, int timeout) {
         new WebDriverWait(driver, Duration.ofSeconds(timeout))
                 .until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
-    /**
-     * Waits for an element to become stale.
-     */
-    public void waitForElementToBeStale(WebElement element, int timeout) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeout))
-                .until(ExpectedConditions.stalenessOf(element));
+    public void waitForUrlFragment(String fragment) {
+        new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT))
+                .until(ExpectedConditions.urlContains(fragment));
     }
 
-    /**
-     * Performs a fluent wait on an element.
-     */
-    public WebElement fluentWait(By locator, int timeout, int polling) {
-        return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(timeout))
-                .pollingEvery(Duration.ofSeconds(polling))
-                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class)
-                .until(d -> d.findElement(locator));
+    public void waitUntilElementStale(WebElement element, int timeout) {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(timeout))
+                    .until(ExpectedConditions.stalenessOf(element));
+            logger.info("Element became stale.");
+        } catch (TimeoutException e) {
+            logger.warn("Element did not become stale within {} seconds", timeout);
+        }
     }
 
-    /**
-     * Attempts to click an element with retries.
-     */
-    public boolean clickElementWithRetry(WebElement element, int retries) {
-        int attempts = 0;
-        while (attempts < retries) {
+    public boolean waitUntilElementGone(WebElement element) {
+        try {
+            return new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT))
+                    .until(ExpectedConditions.invisibilityOf(element));
+        } catch (TimeoutException e) {
+            logger.warn("Element did not disappear in time");
+            return false;
+        }
+    }
+
+    // ========================= VALIDATIONS & RETRY ========================= //
+
+    protected boolean isDisplayed(WebElement element, int timeout) {
+        try {
+            waitUntilVisible(element, timeout);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    protected void acceptAlert() {
+        new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT))
+                .until(ExpectedConditions.alertIsPresent()).accept();
+    }
+
+    public void retryClick(WebElement element, String logMsg, String expectedUrlFragment, int maxRetries) {
+        for (int i = 1; i <= maxRetries; i++) {
             try {
-                waitForElementToBeClickable(element, 5);
-                element.click();
-                return true;
-            } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
-                attempts++;
+                click(element, logMsg + " (Attempt " + i + ")");
+                Thread.sleep(1000);
+                if (driver.getCurrentUrl().contains(expectedUrlFragment)) {
+                    return;
+                }
+            } catch (Exception e) {
+                logger.warn("Retry {} failed: {}", i, e.getMessage());
             }
         }
-        return false;
+        throw new RuntimeException("Failed after " + maxRetries + " click attempts.");
     }
 
-    /**
-     * Waits for an alert to be present.
-     */
-    private Alert waitForAlert(int timeout) {
-        return new WebDriverWait(driver, Duration.ofSeconds(timeout))
-                .until(ExpectedConditions.alertIsPresent());
+    public void clickBy(String fieldName, String rawValue, String xpathTemplate) {
+        if (rawValue == null || rawValue.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " is missing!");
+        }
+        String xpath = String.format(xpathTemplate, rawValue.trim());
+        click(driver.findElement(By.xpath(xpath)), "Clicked " + fieldName + ": " + rawValue);
+    }
+
+    // ========================= UTILITIES ========================= //
+
+    public int getNumberOfAddresses() {
+        return driver.findElements(By.xpath("//div[@class='address-list']//div[contains(@class, 'section')]")).size();
+    }
+
+    protected Map<String, String> getInputData() {
+        return TestContextManager.getInputData();
     }
 }
