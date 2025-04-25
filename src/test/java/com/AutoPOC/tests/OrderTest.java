@@ -1,9 +1,14 @@
 package com.AutoPOC.tests;
 
-import com.AutoPOC.BaseTest;
-import com.AutoPOC.utils.*;
+import com.AutoPOC.base.BaseTest;
+import com.AutoPOC.config.ConfigReader;
+import com.AutoPOC.utils.context.TestContextManager;
+import com.AutoPOC.utils.data.SyntheticDataUtil;
+import com.AutoPOC.utils.excel.ExcelColumnIndex;
+import com.AutoPOC.utils.excel.ExcelReaderUtil;
+import com.AutoPOC.utils.excel.ExcelUtil;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.testng.ITestContext;
-import org.testng.Reporter;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -28,13 +33,11 @@ public class OrderTest extends BaseTest {
         addProductsToCartAndPlaceOrder.checkoutConfirmation();
         addProductsToCartAndPlaceOrder.verifyOrderSuccessMessage();
         orderInformationPage.clickOrderDetailsLink();
-        // Capture and write order info to Excel
-        int rowIndex = ExcelReaderUtil.findNextAvailableRow(
-                ExcelReaderUtil.getSheet(
-                        ConfigReader.getProperty("Test_Data_File_Path"),
-                        ConfigReader.getProperty("Transactional_Data_Sheet_Name")
-                )
+        Sheet sheet = ExcelReaderUtil.getSheet(
+                ConfigReader.getProperty("Test_Data_File_Path"),
+                ConfigReader.getProperty("Transactional_Data_Sheet_Name")
         );
+        int rowIndex = ExcelUtil.findNextAvailableRow(sheet, ExcelColumnIndex.RUN_ID, 2);
         context.setAttribute("ExcelRowIndex", rowIndex); // store in context
         orderInformationPage.saveDetailsToExcel(rowIndex);
     }

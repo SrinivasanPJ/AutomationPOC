@@ -1,9 +1,21 @@
-package com.AutoPOC;
+package com.AutoPOC.base;
 
+import com.AutoPOC.config.ConfigReader;
 import com.AutoPOC.pages.AddProductsToCartAndPlaceOrder;
 import com.AutoPOC.pages.LoginPage;
 import com.AutoPOC.pages.OrderInformationPage;
-import com.AutoPOC.utils.*;
+import com.AutoPOC.utils.context.TestContextManager;
+import com.AutoPOC.utils.context.TestDataKeys;
+import com.AutoPOC.utils.core.DriverFactory;
+import com.AutoPOC.utils.core.ScreenshotUtil;
+import com.AutoPOC.utils.data.ExecutionDataUtil;
+import com.AutoPOC.utils.data.SyntheticDataUtil;
+import com.AutoPOC.utils.data.TestDataUtil;
+import com.AutoPOC.utils.excel.ExcelColumnIndex;
+import com.AutoPOC.utils.excel.ExcelReaderUtil;
+import com.AutoPOC.utils.excel.ExcelUtil;
+import com.AutoPOC.utils.reporting.ExtentReportManager;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +23,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -35,10 +48,14 @@ public class BaseTest {
     public void suiteSetup() {
         startTime = Instant.now();
         logger.info("Test Execution Started at: {}", getCurrentTime());
+
+        // Initialize ExtentReports
+        ExtentReportManager.initReport();
     }
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(Method method) {
+        ExtentReportManager.createTest(method.getName());
         logger.info("Setting up WebDriver before test execution.");
     }
 
@@ -91,19 +108,48 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void recordExecutionData(ITestResult result) {
-        if (orderInformationPage != null) {
-            try {
-                Object attr = result.getTestContext().getAttribute("ExcelRowIndex");
-                if (attr instanceof Integer rowIndex) {
-                    ExecutionDataUtil.writeExecutionData(rowIndex, result);
-                    logger.info("Execution data recorded at row {}", rowIndex + 1);
-                } else {
-                    logger.warn("ExcelRowIndex not found in context. Skipping writeExecutionData.");
-                }
-            } catch (Exception e) {
-                logger.error("Failed to write execution data", e);
+        boolean testPassed = false;
+
+        try {
+            // as soon as test finishes (success or fail), figure out the row once
+            int rowIndex;
+            Object attr = result.getTestContext().getAttribute("ExcelRowIndex");
+            if (attr instanceof Integer idx) {
+                rowIndex = idx;
+            } else {
+                // first‐time allocation: pick next free row under column F, row 2+
+                Sheet sheet = ExcelReaderUtil.getSheet(
+                        ConfigReader.getProperty("Test_Data_File_Path"),
+                        ConfigReader.getProperty("Transactional_Data_Sheet_Name")
+                );
+                rowIndex = ExcelUtil.findNextAvailableRow(sheet, ExcelColumnIndex.RUN_ID, 2);
+                result.getTestContext().setAttribute("ExcelRowIndex", rowIndex);
             }
+
+// now ALWAYS write the execution data (including failure reason)
+            ExecutionDataUtil.writeExecutionData(rowIndex, result);
+        } catch (Exception e) {
+            logger.error("Failed to write execution data", e);
         }
+
+        // Logging AFTER writing execution data
+        try {
+            switch (result.getStatus()) {
+                case ITestResult.SUCCESS -> ExtentReportManager.logPass("Test Passed: " + result.getName());
+                case ITestResult.FAILURE -> {
+                    ExtentReportManager.logFail("Test Failed: " + result.getThrowable());
+                    String screenshotPath = ScreenshotUtil.saveScreenshotAsPNG(driver, result.getName());
+                    ExtentReportManager.attachScreenshotFromPath(screenshotPath, "Failure Screenshot");
+                    logger.error("Failure details:", result.getThrowable());
+                }
+                case ITestResult.SKIP -> ExtentReportManager.logSkip("Test Skipped: " + result.getName());
+            }
+        } catch (Exception e) {
+            logger.error("Error while logging to ExtentReport", e);
+        }
+
+        // Remove test from Extent context
+        ExtentReportManager.removeTest();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -124,6 +170,9 @@ public class BaseTest {
     public void suiteTearDown() {
         logger.info("Test Execution Ended at: {}", getCurrentTime());
         logger.info("Total Execution Time: {}", getExecutionDuration());
+
+        // Finalize and write Extent Report
+        ExtentReportManager.flushReport();
     }
 
     @DataProvider(name = "testData")
