@@ -1,48 +1,71 @@
 package com.AutoPOC.utils.core;
 
-import com.AutoPOC.utils.reporting.LogUtil;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+/**
+ * Utility class for capturing screenshots during test execution.
+ * <p>
+ * Saves screenshots under the reports/screenshots/ directory with timestamped filenames.
+ */
 public class ScreenshotUtil {
 
+    private static final Logger logger = LoggerFactory.getLogger(ScreenshotUtil.class);
+    private static final String SCREENSHOT_FOLDER = "reports/screenshots/";
+
     /**
-     * Captures screenshot as Base64 string for embedding in Extent Report.
+     * Captures a screenshot of the current WebDriver page and saves it as a PNG file.
      *
-     * @param driver WebDriver instance
-     * @return Base64 encoded screenshot
+     * @param driver         WebDriver instance
+     * @param screenshotName Logical name for the screenshot file (will have timestamp appended)
+     * @return Relative path to the saved screenshot for embedding in reports; null if failure
      */
-    public static String captureScreenshotAsBase64(WebDriver driver) {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        return ts.getScreenshotAs(OutputType.BASE64);
+    public static String saveScreenshotAsPNG(WebDriver driver, String screenshotName) {
+        try {
+            if (driver == null) {
+                logger.error("WebDriver instance is null. Cannot capture screenshot.");
+                return null;
+            }
+
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+            ensureScreenshotFolderExists();
+
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String fileName = screenshotName + "_" + timestamp + ".png";
+            String fullPath = SCREENSHOT_FOLDER + fileName;
+
+            FileUtils.copyFile(srcFile, new File(fullPath));
+
+            logger.info("Screenshot saved: {}", fullPath);
+            return "screenshots/" + fileName; // Relative path for embedding in HTML report
+
+        } catch (IOException e) {
+            logger.error("Failed to save screenshot.", e);
+            return null;
+        } catch (Exception e) {
+            logger.error("Unexpected error while capturing screenshot.", e);
+            return null;
+        }
     }
 
     /**
-     * Saves a PNG screenshot to the /screenshots directory with test name + timestamp.
-     *
-     * @param driver   WebDriver instance
-     * @param testName Name of the test case
-     * @return Full file path to the saved screenshot
+     * Ensures that the screenshot output directory exists.
+     * Creates the directory if it does not already exist.
      */
-    public static String saveScreenshotAsPNG(WebDriver driver, String testName) {
-        try {
-            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-            String screenshotPath = "screenshots/" + testName + "_" + timestamp + ".png";
-
-            File dest = new File(screenshotPath);
-            FileUtils.copyFile(src, dest);
-            return screenshotPath;
-        } catch (IOException e) {
-            LogUtil.error(ScreenshotUtil.class, "Failed to capture screenshot", e);
-            return null;
+    private static void ensureScreenshotFolderExists() {
+        File folder = new File(SCREENSHOT_FOLDER);
+        if (!folder.exists() && folder.mkdirs()) {
+            logger.info("Screenshot directory created: {}", SCREENSHOT_FOLDER);
         }
     }
 }

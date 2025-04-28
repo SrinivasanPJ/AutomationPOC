@@ -102,7 +102,7 @@ public class AddProductsToCartAndPlaceOrder extends BasePage {
         click(accountLink, "Clicked Account link");
         click(addressesLink, "Clicked Addresses link");
 
-        if (isDisplayed(deleteAddressButton, 5)) {
+        if (isDisplayed(deleteAddressButton)) {
             deleteAddressButton.click();
             log("Clicked delete address button");
 

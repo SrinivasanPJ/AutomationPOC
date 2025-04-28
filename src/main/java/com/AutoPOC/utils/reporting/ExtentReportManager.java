@@ -1,9 +1,7 @@
 package com.AutoPOC.utils.reporting;
 
 import com.AutoPOC.config.ConfigReader;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
@@ -14,155 +12,242 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Utility class to manage Extent Reports for test automation logging.
+ * Singleton class (Enum based) managing ExtentReports lifecycle,
+ * logging test outcomes, attaching screenshots, and configuring system info
+ * for enterprise-level automation reporting.
  */
-public class ExtentReportManager {
+public enum ExtentReportManager {
+
+    INSTANCE;
+
+    private static final Logger logger = LoggerFactory.getLogger(ExtentReportManager.class);
 
     private static final ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
-    private static final Logger logger = LoggerFactory.getLogger(ExtentReportManager.class);
-    private static ExtentReports extent;
+    private ExtentReports extent;
+    private String reportPath;
+
+    private int totalTests = 0;
+    private int testsPassed = 0;
+    private int testsFailed = 0;
+
+    /** -------------------------------------------------
+     *  Initialization Methods
+     *  ------------------------------------------------- */
 
     /**
-     * Initializes the Extent report and configures its visual and metadata settings.
+     * Initializes ExtentReports with Spark reporter configuration.
+     * Ensures the report file is dynamically timestamped.
      */
-    public static void initReport() {
+    public synchronized void initReport() {
         if (extent == null) {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-            String reportPath = "reports/ExecutionReport_" + timestamp + ".html";
+            this.reportPath = "reports/ExecutionReport_" + timestamp + ".html";
 
-            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
-            spark.config().setReportName("Automation Execution Report");
-            spark.config().setDocumentTitle("Demo WebShop Report");
-            spark.config().setTheme(Theme.STANDARD);
-            spark.config().setTimelineEnabled(true);
-
-            // Set view order (side panel customization)
-            spark.viewConfigurer().viewOrder()
-                    .as(new ViewName[]{
-                            ViewName.DASHBOARD,
-                            ViewName.TEST,
-                            ViewName.CATEGORY,
-                            ViewName.AUTHOR,
-                            ViewName.EXCEPTION,
-                            ViewName.LOG
-                    });
+            ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
+            configureSparkReporter(sparkReporter);
 
             extent = new ExtentReports();
-            extent.attachReporter(spark);
+            extent.attachReporter(sparkReporter);
 
-            // System Info
-            extent.setSystemInfo("OS", System.getProperty("os.name"));
-            extent.setSystemInfo("User", System.getProperty("user.name"));
-            extent.setSystemInfo("Java Version", System.getProperty("java.version"));
-            extent.setSystemInfo("Time Zone", System.getProperty("user.timezone"));
-            extent.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
-            extent.setSystemInfo("Environment", ConfigReader.getProperty("env.name", "Unknown"));
-            extent.setSystemInfo("Build Version", ConfigReader.getProperty("build.version", "N/A"));
+            setSystemInfo();
+            logger.info("ExtentReport initialized: {}", reportPath);
         }
     }
 
+    private void configureSparkReporter(ExtentSparkReporter spark) {
+        spark.config().setReportName("Automation Execution Report");
+        spark.config().setDocumentTitle("Execution Summary");
+        spark.config().setTheme(Theme.STANDARD);
+        spark.config().setTimelineEnabled(true);
+
+        spark.config().setJs("""
+            document.addEventListener("DOMContentLoaded", function() {
+                const firstFailure = document.querySelector('.fail');
+                if (firstFailure) {
+                    firstFailure.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        """);
+
+        spark.viewConfigurer().viewOrder()
+                .as(new ViewName[]{
+                        ViewName.DASHBOARD,
+                        ViewName.TEST,
+                        ViewName.CATEGORY,
+                        ViewName.AUTHOR,
+                        ViewName.EXCEPTION,
+                        ViewName.LOG
+                });
+    }
+
+    private void setSystemInfo() {
+        extent.setSystemInfo("OS", System.getProperty("os.name"));
+        extent.setSystemInfo("User", System.getProperty("user.name"));
+        extent.setSystemInfo("Java Version", System.getProperty("java.version"));
+        extent.setSystemInfo("Time Zone", System.getProperty("user.timezone"));
+        extent.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
+        extent.setSystemInfo("Environment", ConfigReader.getProperty("env.name", "Unknown"));
+        extent.setSystemInfo("Build Version", ConfigReader.getProperty("build.version", "N/A"));
+    }
+
+    /** -------------------------------------------------
+     *  Test Node Management
+     *  ------------------------------------------------- */
+
     /**
-     * Creates a new test entry in the report.
-     * @param testName The name of the test.
+     * Creates a new test node under the current report for the running thread.
+     *
+     * @param testName The test case name
      */
-    public static void createTest(String testName) {
+    public void createTest(String testName) {
         ExtentTest test = extent.createTest(testName);
         extentTest.set(test);
+        totalTests++;
     }
 
     /**
-     * Returns the current test instance associated with the calling thread.
-     * @return The current ExtentTest instance.
+     * Returns the current thread's ExtentTest node.
+     *
+     * @return ExtentTest instance
      */
-    public static ExtentTest getTest() {
+    public ExtentTest getTest() {
         return extentTest.get();
     }
 
+    /** -------------------------------------------------
+     *  Logging Methods
+     *  ------------------------------------------------- */
+
     /**
-     * Logs a passing test step.
-     * @param message The message to log.
+     * Logs a passing step and increments the pass counter.
+     *
+     * @param message The pass message
      */
-    public static void logPass(String message) {
+    public void logPass(String message) {
         getTest().pass(message);
-        logger.info(message);
+        testsPassed++;
+        logger.info("[PASS] {}", message);
     }
 
     /**
-     * Logs a failing test step and provides a link to the automation log.
-     * @param message The failure message.
+     * Logs a failing step along with the Throwable and increments the fail counter.
+     *
+     * @param message Failure description
+     * @param t       Exception or error thrown
      */
-    public static void logFail(String message) {
-        getTest().fail(message + "<br><a href='../logs/automation.log' target='_blank'>📄 View automation.log</a>");
-        logger.error(message);
+    public void logFail(String message, Throwable t) {
+        getTest().fail(message, MediaEntityBuilder.createScreenCaptureFromPath("./" + attachScreenshotFromThrowable(t)).build());
+        testsFailed++;
+        logger.error("[FAIL] {}", message, t);
     }
 
     /**
      * Logs a skipped test step.
-     * @param message The skip reason.
+     *
+     * @param message Skip reason
      */
-    public static void logSkip(String message) {
+    public void logSkip(String message) {
         getTest().skip(message);
-        logger.warn(message);
+        logger.warn("[SKIP] {}", message);
     }
 
     /**
-     * Logs an informational message with class context.
-     * @param message The message to log.
-     * @param clazz The class from which the log originates.
+     * Logs an informational message tied to a specific class.
+     *
+     * @param message Info message
+     * @param clazz   Class context
      */
-    public static void logInfo(String message, Class<?> clazz) {
+    public void logInfo(String message, Class<?> clazz) {
         getTest().info(message);
         LoggerFactory.getLogger(clazz).info(message);
     }
 
     /**
-     * Logs an informational message without class context.
-     * @param message The message to log.
+     * Logs a simple information message.
+     *
+     * @param message Info message
      */
-    public static void logInfoSimple(String message) {
+    public void logInfoSimple(String message) {
         getTest().info(message);
         logger.info(message);
     }
 
     /**
-     * Logs a custom status message with class context.
-     * @param status The status (PASS, FAIL, INFO, etc.)
-     * @param message The message to log.
-     * @param clazz The originating class.
+     * Logs a message with a specified Status (PASS/FAIL/INFO) tied to a class.
+     *
+     * @param status Logging status
+     * @param message Log message
+     * @param clazz Class context
      */
-    public static void log(Status status, String message, Class<?> clazz) {
+    public void log(Status status, String message, Class<?> clazz) {
         if (extentTest.get() != null) {
             extentTest.get().log(status, "[" + clazz.getSimpleName() + "] " + message);
         }
     }
 
     /**
-     * Attaches a screenshot to the current test log.
-     * @param screenshotPath The file path to the screenshot.
-     * @param title The title or caption for the screenshot.
+     * Attaches a screenshot to the test report.
+     *
+     * @param path  Relative path to screenshot
+     * @param title Caption title
      */
-    public static void attachScreenshotFromPath(String screenshotPath, String title) {
+    public void attachScreenshotFromPath(String path, String title) {
         try {
-            String relativePath = screenshotPath.replace("screenshots/", "../screenshots/");
-            getTest().info(title).addScreenCaptureFromPath(relativePath);
+            getTest().fail(title,
+                    MediaEntityBuilder.createScreenCaptureFromPath("./" + path).build());
         } catch (Exception e) {
-            logger.error("Failed to attach screenshot to report", e);
+            logger.error("Failed to attach screenshot to report.", e);
         }
     }
 
+    private String attachScreenshotFromThrowable(Throwable t) {
+        // Placeholder — Normally you’d take screenshot here or generate error stack trace snapshot
+        return "path/to/error_screenshot.png";
+    }
+
+    /** -------------------------------------------------
+     *  Finalization Methods
+     *  ------------------------------------------------- */
+
     /**
-     * Flushes the report data to disk.
+     * Returns the generated report file path.
+     *
+     * @return HTML report path
      */
-    public static void flushReport() {
+    public String getReportPath() {
+        return reportPath;
+    }
+
+    /**
+     * Flushes the ExtentReports data to disk.
+     */
+    public void flushReport() {
         if (extent != null) {
             extent.flush();
+            logger.info("Extent Report flushed to disk.");
         }
     }
 
     /**
-     * Removes the current test instance from the thread-local context.
+     * Removes the ExtentTest instance from ThreadLocal storage.
      */
-    public static void removeTest() {
+    public void removeTest() {
         extentTest.remove();
+    }
+
+    /** -------------------------------------------------
+     *  Metrics Getters
+     *  ------------------------------------------------- */
+
+    public int getTotalTests() {
+        return totalTests;
+    }
+
+    public int getTestsPassed() {
+        return testsPassed;
+    }
+
+    public int getTestsFailed() {
+        return testsFailed;
     }
 }

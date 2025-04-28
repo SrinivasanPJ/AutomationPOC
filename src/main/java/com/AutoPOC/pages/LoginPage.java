@@ -34,7 +34,7 @@ public class LoginPage extends BasePage {
      */
     public void login(String user, String pass) {
         click(loginLink, "Clicked Main Login button");
-        log("Attempting login with email: " + user);
+        //log("Attempting login with email: " + user);
 
         sendKeys(email, user);
         log("Entered Email: " + user);

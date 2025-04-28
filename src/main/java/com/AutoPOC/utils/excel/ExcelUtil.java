@@ -30,7 +30,7 @@ public class ExcelUtil {
         }
 
         int next = sheet.getLastRowNum() + 1;
-        LogUtil.log(ExcelUtil.class, "Appending new row at index: " + next);
+        //LogUtil.log(ExcelUtil.class, "Appending new row at index: " + next);
         return next;
     }
 

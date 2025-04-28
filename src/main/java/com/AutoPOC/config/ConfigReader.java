@@ -4,6 +4,7 @@ import com.AutoPOC.utils.reporting.LogUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Properties;
 
 /**
@@ -23,7 +24,6 @@ public class ConfigReader {
             throw new RuntimeException("Failed to load config.properties file", e);
         }
     }
-
 
     /**
      * Retrieves the property value for a given key.
@@ -48,5 +48,16 @@ public class ConfigReader {
             LogUtil.warn(ConfigReader.class, "Missing config key '" + key + "', using default '" + defaultValue + "'");
         }
         return (val == null ? defaultValue : val).trim();
+    }
+
+    /**
+     * Reads a property and Base64-decodes it.
+     */
+    public static String getDecryptedProperty(String key) {
+        String encodedValue = properties.getProperty(key);
+        if (encodedValue != null) {
+            return new String(Base64.getDecoder().decode(encodedValue));
+        }
+        return null;
     }
 }
